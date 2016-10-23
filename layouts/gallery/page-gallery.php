@@ -6,20 +6,24 @@ $wpb_all_query = new WP_Query(array('post_type'=>'gallery', 'post_status'=>'publ
 
 
 <article class="uk-article">
-<?php if (has_post_thumbnail()) : $post_image = wp_get_attachment_image_src( get_post_thumbnail_id(), 'original' ); ?>
-            <div class="uk-cover-background tm-featured-image uk-slideshow uk-overlay-active" style="background-image:url(<?php echo $post_image[0]; ?>);">
-                <div class="uk-overlay-panel uk-flex uk-flex-center uk-flex-middle uk-text-center">
-                    <div>
-                        <h1 class="uk-article-title uk-heading-large" id="main-title"><?php the_title(); ?></h1>
-                    </div>
+	<?php if (has_post_thumbnail()) : $post_image = wp_get_attachment_image_src( get_post_thumbnail_id(), 'original' ); ?>
+        <div class="uk-cover-background tm-featured-image uk-slideshow uk-overlay-active" style="background-image:url(<?php echo $post_image[0]; ?>);">
+            <div class="uk-overlay-panel uk-flex uk-flex-center uk-flex-middle uk-text-center">
+                <div>
+                    <h1 class="uk-article-title uk-heading-large" id="main-title"><?php the_title(); ?></h1>
                 </div>
             </div>
-            <div class="uk-cover-background-spacer"></div>
-            <?php endif; ?>
+        </div>
+        <div class="uk-cover-background-spacer"></div>
+    <?php endif; ?>
 
-            <div class="lead-text">
-                <?php the_content(''); ?>
-            </div>
+    <div class="lead-text">
+    	<?php 
+        	$page = get_post(get_the_ID()); 
+			$content = apply_filters('the_content', $page->post_content); 
+            echo $content;
+        ?>
+    </div>
 
 <?php  if ($wpb_all_query->have_posts()) : ?>
 	<?php $alignmentClass = "uk-float-right uk-flex-order-last-medium"; ?>
