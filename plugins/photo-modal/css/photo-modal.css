@@ -1,4 +1,4 @@
-.masonry-item{
+.masonry-item:not(.grid-sizer){
 	margin-top: 10px!important; 
 	margin-bottom: 10px!important;
 }
